@@ -246,3 +246,44 @@ function showToast(message, type = 'primary') {
     document.getElementById('toastMessage').textContent = message;
     new bootstrap.Toast(toast).show();
 }
+
+// Validación dinámica del campo "Nombre Completo"
+fullName.addEventListener('input', () => {
+    // Si el nombre tiene menos de 3 caracteres, muestra error y resalta el campo
+    if (fullName.value.trim().length < 3) {
+        fullName.classList.add('is-invalid'); // Agrega borde rojo
+        fullNameError.textContent = 'El nombre debe tener al menos 3 caracteres.'; // Mensaje de error
+    } else {
+        // Si es válido, quita el borde rojo y borra el mensaje de error
+        fullName.classList.remove('is-invalid');
+        fullNameError.textContent = '';
+    }
+});
+
+// Validación dinámica del campo "Email"
+email.addEventListener('input', () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para validar email
+    // Si el email no cumple el patrón, muestra error y resalta el campo
+    if (!emailRegex.test(email.value.trim())) {
+        email.classList.add('is-invalid'); // Agrega borde rojo
+        emailError.textContent = 'Ingresa un email válido.'; // Mensaje de error
+    } else {
+        // Si es válido, quita el borde rojo y borra el mensaje de error
+        email.classList.remove('is-invalid');
+        emailError.textContent = '';
+    }
+});
+
+// Validación dinámica del campo "Teléfono"
+phone.addEventListener('input', () => {
+    const phoneRegex = /^[0-9]{7,}$/; // Expresión regular: al menos 7 dígitos numéricos
+    // Si el teléfono no cumple el patrón, muestra error y resalta el campo
+    if (!phoneRegex.test(phone.value.trim())) {
+        phone.classList.add('is-invalid'); // Agrega borde rojo
+        phoneError.textContent = 'El teléfono debe tener al menos 7 dígitos.'; // Mensaje de error
+    } else {
+        // Si es válido, quita el borde rojo y borra el mensaje de error
+        phone.classList.remove('is-invalid');
+        phoneError.textContent = '';
+    }
+});
